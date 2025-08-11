@@ -18,11 +18,34 @@
   "scripts": {
     "prepare": "simple-git-hooks"
   },
+  "dependencies": {
+    "@wry/caches": "1.0.1",
+    "flru": "1.0.2",
+    "hashlru": "2.3.0",
+    "lru": "3.1.0",
+    "lru-cache": "11.1.0",
+    "lru-queue": "0.1.0",
+    "lru.min": "1.1.2",
+    "lru_map": "0.4.1",
+    "mnemonist": "0.40.3",
+    "nanolru": "1.0.0",
+    "quick-lru": "7.0.1",
+    "tiny-lru": "11.4.3",
+    "weak-lru-cache": "1.2.2",
+    "ylru": "2.0.0"
+  },
   "devDependencies": {
+    "@tsconfig/node-ts": "23.6.1",
+    "@tsconfig/node24": "24.0.1",
+    "@tsconfig/strictest": "2.0.5",
+    "@types/node": "24.2.1",
     "markdown-table": "3.0.4",
     "mitata": "^1.0.34",
     "nano-staged": "0.8.0",
+    "p-limit": "6.2.0",
     "prettier": "3.6.2",
-    "simple-git-hooks": "2.13.1"
+    "rolldown": "1.0.0-beta.32",
+    "simple-git-hooks": "2.13.1",
+    "typescript": "5.9.2"
   }
 }

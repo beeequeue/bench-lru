@@ -1,0 +1,56 @@
+[
+  {
+    "name": "@wry/caches",
+    "code": "export { StrongCache } from '@wry/caches'",
+    "downloadsLastMonth": 10101821,
+    "bundleSize": 8010
+  },
+  {
+    "name": "flru",
+    "code": "export { default } from 'flru'",
+    "downloadsLastMonth": 324839,
+    "bundleSize": 1922
+  },
+  {
+    "name": "hashlru",
+    "downloadsLastMonth": 718536
+  },
+  {
+    "name": "lru-cache",
+    "downloadsLastMonth": 923492457
+  },
+  {
+    "name": "lru-queue",
+    "downloadsLastMonth": 17530562
+  },
+  {
+    "name": "lru.min",
+    "downloadsLastMonth": 8128703
+  },
+  {
+    "name": "lru_map",
+    "downloadsLastMonth": 8160293
+  },
+  {
+    "name": "mnemonist",
+    "downloadsLastMonth": 19944348
+  },
+  {
+    "name": "quick-lru",
+    "downloadsLastMonth": 111500190
+  },
+  {
+    "name": "tiny-lru",
+    "code": "export { lru } from 'tiny-lru'",
+    "downloadsLastMonth": 4268934,
+    "bundleSize": 4784
+  },
+  {
+    "name": "weak-lru-cache",
+    "downloadsLastMonth": 10040913
+  },
+  {
+    "name": "ylru",
+    "downloadsLastMonth": 14663191
+  }
+]
