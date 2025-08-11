@@ -13,23 +13,27 @@
   },
   {
     "name": "hashlru",
-    "downloadsLastMonth": 718536
+    "code": "export { default } from 'hashlru'",
+    "downloadsLastMonth": 718536,
+    "bundleSize": 2318
   },
   {
     "name": "lru-cache",
-    "downloadsLastMonth": 923492457
-  },
-  {
-    "name": "lru-queue",
-    "downloadsLastMonth": 17530562
+    "downloadsLastMonth": 923492457,
+    "code": "export { LRUCache } from 'lru-cache'",
+    "bundleSize": 39530
   },
   {
     "name": "lru.min",
-    "downloadsLastMonth": 8128703
+    "downloadsLastMonth": 8128703,
+    "code": "export { createLRU } from 'lru.min'",
+    "bundleSize": 4376
   },
   {
     "name": "lru_map",
-    "downloadsLastMonth": 8160293
+    "downloadsLastMonth": 8160293,
+    "code": "export { default } from 'lru_map'",
+    "bundleSize": 7198
   },
   {
     "name": "mnemonist",
@@ -51,6 +55,8 @@
   },
   {
     "name": "ylru",
-    "downloadsLastMonth": 14663191
+    "downloadsLastMonth": 14663191,
+    "code": "export { LRU } from \"ylru\"",
+    "bundleSize": 2148
   }
 ]

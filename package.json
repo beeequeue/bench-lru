@@ -24,7 +24,6 @@
     "hashlru": "2.3.0",
     "lru": "3.1.0",
     "lru-cache": "11.1.0",
-    "lru-queue": "0.1.0",
     "lru.min": "1.1.2",
     "lru_map": "0.4.1",
     "mnemonist": "0.40.3",
