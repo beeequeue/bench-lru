@@ -7,26 +7,20 @@
   "compilerOptions": {
     // Output
     "noEmit": true,
-    "sourceMap": true,
 
     // Modules
     "resolveJsonModule": true,
-    "esModuleInterop": true,
     "allowImportingTsExtensions": true,
 
     // Lessen strictness
-    "importsNotUsedAsValues": "remove",
     "noImplicitReturns": false,
     "noPropertyAccessFromIndexSignature": false,
     "noUncheckedIndexedAccess": false,
     "exactOptionalPropertyTypes": false,
-    "verbatimModuleSyntax": false,
-    "allowJs": false,
-    "checkJs": false,
 
     // Extra types
     "types": ["node"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["./"],
   "exclude": ["node_modules", "dist", "copy.ts"]
 }
