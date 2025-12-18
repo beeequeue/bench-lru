@@ -7,6 +7,8 @@ import LRUMap from "lru_map"
 import { createLRU } from "lru.min"
 import { lru as tinyLru } from "tiny-lru"
 import { SemverLRUCache } from "./semver-lru.ts"
+import PicoLRU from "picolru"
+import QuickLRU from "quick-lru"
 
 type Cache<K, V> = {
   get: (key: K) => V | undefined
@@ -22,6 +24,8 @@ const caches = new Map<string, (amount: number) => Cache<any, any>>([
   ["semver", (amount: number) => new SemverLRUCache(amount)],
   ["tiny-lru", (amount: number) => tinyLru(amount)],
   ["ylru", (amount: number) => new YLRU(amount)],
+  ["quick-lru", (amount: number) => new QuickLRU({ maxSize: amount })],
+  ["picolru", (amount: number) => new PicoLRU({ maxSize: amount })],
 ])
 
 const longKeys: string[] = []
