@@ -47,9 +47,12 @@ importers:
       nanolru:
         specifier: 1.0.0
         version: 1.0.0
+      picolru:
+        specifier: 2.0.0
+        version: 2.0.0
       quick-lru:
-        specifier: 7.0.1
-        version: 7.0.1
+        specifier: 7.3.0
+        version: 7.3.0
       tiny-lru:
         specifier: 11.4.3
         version: 11.4.3
@@ -221,8 +224,14 @@ packages:
   hashlru@2.3.0:
     resolution: {integrity: sha512-0cMsjjIC8I+D3M44pOQdsy0OHXGLVz6Z0beRuufhKa0KfaD2wGwAev6jILzXsd3/vpnNQJmWyZtIILqM1N+n5A==}
 
+  immediato@1.1.0:
+    resolution: {integrity: sha512-6DTWQWiM3SyxAbNRDmMvFgZVwVP6wT8ciQv7GivxXejtXZFIcemC0Wlzfd/jEouJ2JroCIp4qZVloKW4BviUpQ==}
+
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
+
+  isotimer@1.0.0:
+    resolution: {integrity: sha512-1p1wborMl9fFbulXx9YBpIqFnfUn/2tN8Ne9g3GLMaiQAPmN/wLlpNOKCNT822div3Sq7LKkApZJ+6JipDUusQ==}
 
   lru-cache@11.1.0:
     resolution: {integrity: sha512-QIXZUBJUx+2zHUdQujWejBkcD9+cs94tLn0+YL8UrCh+D5sCXZ4c7LaEH48pNwRY3MLDgqUFyhlCyjJPf1WP0A==}
@@ -267,13 +276,16 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
+  picolru@2.0.0:
+    resolution: {integrity: sha512-LPWNtsX8E4H8CGo+9yhHHif+LC3LRV3kf0t0ksl+91lGHdWf4ZsMA8HusJzyOpzvRJExACO8RkQPckuy4uO5QA==}
+
   prettier@3.6.2:
     resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
     engines: {node: '>=14'}
     hasBin: true
 
-  quick-lru@7.0.1:
-    resolution: {integrity: sha512-kLjThirJMkWKutUKbZ8ViqFc09tDQhlbQo2MNuVeLWbRauqYP96Sm6nzlQ24F0HFjUNZ4i9+AgldJ9H6DZXi7g==}
+  quick-lru@7.3.0:
+    resolution: {integrity: sha512-k9lSsjl36EJdK7I06v7APZCbyGT2vMTsYSRX1Q2nbYmnkBqgUhRkAuzH08Ciotteu/PLJmIF2+tti7o3C/ts2g==}
     engines: {node: '>=18'}
 
   rolldown@1.0.0-beta.32:
@@ -410,7 +422,13 @@ snapshots:
 
   hashlru@2.3.0: {}
 
+  immediato@1.1.0: {}
+
   inherits@2.0.4: {}
+
+  isotimer@1.0.0:
+    dependencies:
+      immediato: 1.1.0
 
   lru-cache@11.1.0: {}
 
@@ -444,9 +462,13 @@ snapshots:
 
   picocolors@1.1.1: {}
 
+  picolru@2.0.0:
+    dependencies:
+      isotimer: 1.0.0
+
   prettier@3.6.2: {}
 
-  quick-lru@7.0.1: {}
+  quick-lru@7.3.0: {}
 
   rolldown@1.0.0-beta.32:
     dependencies:
