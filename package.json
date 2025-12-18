@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "license": "MIT",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.26.0",
   "engines": {
     "node": "^24"
   },
@@ -29,11 +29,11 @@
     "lru_map": "0.4.1",
     "mnemonist": "0.40.3",
     "nanolru": "1.0.0",
+    "picolru": "2.0.0",
+    "quick-lru": "7.3.0",
     "tiny-lru": "11.4.3",
     "weak-lru-cache": "1.2.2",
-    "ylru": "2.0.0",
-    "quick-lru": "7.3.0",
-    "picolru": "2.0.0"
+    "ylru": "2.0.0"
   },
   "devDependencies": {
     "@tsconfig/node-ts": "23.6.1",
