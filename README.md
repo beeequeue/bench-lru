@@ -8,7 +8,7 @@ A set of simple benchmarks for various LRU packages.
 
 node 24.12.0 (x64-win32)
 
-4.91GHz AMD Ryzen 7 9800X3D 8-Core Processor
+5.01GHz AMD Ryzen 7 9800X3D 8-Core Processor
 
 ---
 
@@ -70,14 +70,14 @@ xychart-beta
 xychart-beta
   title "INIT"
   x-axis ["flru", "hashlru", "lru_map", "picolru", "quick-lru", "semver", "tiny-lru", "ylru"]
-  y-axis "speed relative to fastest" 1 --> 2.7133
-  bar [2.7133, 2.236, 1.0847, 1.0826, 2.3647, 1.0174, 1, 1.6832]
+  y-axis "speed relative to fastest" 1 --> 2.8141
+  bar [2.8141, 2.2554, 1.0978, 1.0757, 2.3777, 1, 1.0035, 1.7131]
 ```
 
 Hidden outliers:
 
-- `lru-cache`: `2,758.97`
-- `lru.min`: `4,113.66`
+- `lru-cache`: `2,798.81`
+- `lru.min`: `4,363`
 <details>
 
 <summary>Complete graph with outliers</summary>
@@ -87,7 +87,7 @@ xychart-beta
   title "INIT"
   x-axis ["flru", "hashlru", "lru-cache", "lru.min", "lru_map", "picolru", "quick-lru", "semver", "tiny-lru", "ylru"]
   y-axis "speed relative to fastest"
-  bar [0.0027, 0.0022, 2.759, 4.1137, 0.0011, 0.0011, 0.0024, 0.001, 0.001, 0.0017]
+  bar [0.0028, 0.0023, 2.7988, 4.363, 0.0011, 0.0011, 0.0024, 0.001, 0.001, 0.0017]
 ```
 
 </details>
@@ -98,8 +98,8 @@ xychart-beta
 xychart-beta
   title "SET STRING (10 000)"
   x-axis ["flru", "hashlru", "lru-cache", "lru.min", "lru_map", "picolru", "quick-lru", "semver", "tiny-lru", "ylru"]
-  y-axis "speed relative to fastest" 1 --> 2.2393
-  bar [1, 1.1145, 2.1532, 2.0857, 2.2186, 2.2393, 2.1684, 2.1055, 1.7406, 2.1328]
+  y-axis "speed relative to fastest" 1 --> 2.26
+  bar [1, 1.1281, 2.1713, 2.191, 2.2185, 2.26, 2.1613, 2.1328, 1.7033, 2.1319]
 ```
 
 ---
@@ -108,8 +108,8 @@ xychart-beta
 xychart-beta
   title "SET LONG STRING (10 000)"
   x-axis ["flru", "hashlru", "lru-cache", "lru.min", "lru_map", "picolru", "quick-lru", "semver", "tiny-lru", "ylru"]
-  y-axis "speed relative to fastest" 1 --> 1.4333
-  bar [1, 1.0604, 1.3813, 1.3829, 1.4333, 1.3735, 1.3869, 1.3588, 1.4309, 1.4]
+  y-axis "speed relative to fastest" 1 --> 1.4597
+  bar [1, 1.0594, 1.366, 1.3807, 1.4597, 1.3781, 1.3966, 1.3054, 1.4286, 1.371]
 ```
 
 ---
@@ -118,8 +118,8 @@ xychart-beta
 xychart-beta
   title "GET STRING (10 000)"
   x-axis ["flru", "hashlru", "lru-cache", "lru.min", "lru_map", "picolru", "quick-lru", "semver", "tiny-lru", "ylru"]
-  y-axis "speed relative to fastest" 1 --> 3.5045
-  bar [1, 1.1536, 2.0374, 1.9683, 2.0119, 2.4329, 2.0761, 3.5045, 1.6867, 1.9208]
+  y-axis "speed relative to fastest" 1 --> 3.5221
+  bar [1, 1.1437, 2.0363, 1.9562, 1.993, 2.158, 1.9281, 3.5221, 1.6742, 1.9473]
 ```
 
 ---
@@ -128,8 +128,8 @@ xychart-beta
 xychart-beta
   title "GET LONG STRING (10 000)"
   x-axis ["flru", "hashlru", "lru-cache", "lru.min", "lru_map", "picolru", "quick-lru", "semver", "tiny-lru", "ylru"]
-  y-axis "speed relative to fastest" 1 --> 2.8548
-  bar [1, 1.1735, 2.146, 2.0322, 2.14, 2.7005, 1.7984, 2.8548, 1.329, 1.5357]
+  y-axis "speed relative to fastest" 1 --> 3.8069
+  bar [1, 1.1889, 2.1978, 2.1779, 2.2066, 2.6864, 2.1279, 3.8069, 1.9394, 1.7968]
 ```
 
 ---
@@ -138,8 +138,8 @@ xychart-beta
 xychart-beta
   title "SET WITH EVICTION (10 000)"
   x-axis ["flru", "hashlru", "lru-cache", "lru.min", "lru_map", "picolru", "quick-lru", "semver", "tiny-lru", "ylru"]
-  y-axis "speed relative to fastest" 1 --> 1.9678
-  bar [1, 1.1814, 1.9678, 1.829, 1.5578, 1.6495, 1.6303, 1.4336, 1.3573, 1.488]
+  y-axis "speed relative to fastest" 1 --> 1.5163
+  bar [1, 1.03, 1.5163, 1.4173, 1.3519, 1.3659, 1.3578, 1.2798, 1.2119, 1.3379]
 ```
 
 <!-- BENCHMARKS END -->
