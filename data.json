@@ -1,62 +1,77 @@
 [
   {
     "name": "@wry/caches",
+    "version": "1.0.1",
     "code": "export { StrongCache } from '@wry/caches'",
-    "downloadsLastMonth": 10101821,
-    "bundleSize": 8010
+    "downloadsLastMonth": 12741491,
+    "minifiedBundleSize": 6972
   },
   {
     "name": "flru",
+    "version": "1.0.2",
     "code": "export { default } from 'flru'",
-    "downloadsLastMonth": 324839,
-    "bundleSize": 1922
+    "downloadsLastMonth": 446231,
+    "minifiedBundleSize": 1890
   },
   {
     "name": "hashlru",
+    "version": "2.3.0",
     "code": "export { default } from 'hashlru'",
-    "downloadsLastMonth": 718536,
-    "bundleSize": 2318
+    "downloadsLastMonth": 796883,
+    "minifiedBundleSize": 2286
   },
   {
     "name": "lru-cache",
-    "downloadsLastMonth": 923492457,
+    "version": "11.2.4",
     "code": "export { LRUCache } from 'lru-cache'",
-    "bundleSize": 39530
+    "downloadsLastMonth": 1154015643,
+    "minifiedBundleSize": 34276
   },
   {
     "name": "lru.min",
-    "downloadsLastMonth": 8128703,
+    "version": "1.1.3",
     "code": "export { createLRU } from 'lru.min'",
-    "bundleSize": 4376
+    "downloadsLastMonth": 22178365,
+    "minifiedBundleSize": 4256
   },
   {
     "name": "lru_map",
-    "downloadsLastMonth": 8160293,
+    "version": "0.4.1",
     "code": "export { default } from 'lru_map'",
-    "bundleSize": 7198
+    "downloadsLastMonth": 9222208,
+    "minifiedBundleSize": 7128
   },
   {
-    "name": "mnemonist",
-    "downloadsLastMonth": 19944348
+    "name": "picolru",
+    "version": "2.0.0",
+    "code": "export { default } from 'picolru'",
+    "downloadsLastMonth": 11,
+    "minifiedBundleSize": 4252
   },
   {
     "name": "quick-lru",
-    "downloadsLastMonth": 111500190
+    "version": "7.3.0",
+    "code": "export { default } from 'quick-lru'",
+    "downloadsLastMonth": 126098786,
+    "minifiedBundleSize": 6552
   },
   {
     "name": "tiny-lru",
+    "version": "11.4.5",
     "code": "export { lru } from 'tiny-lru'",
-    "downloadsLastMonth": 4268934,
-    "bundleSize": 4784
+    "downloadsLastMonth": 5173069,
+    "minifiedBundleSize": 4784
   },
   {
     "name": "weak-lru-cache",
-    "downloadsLastMonth": 10040913
+    "version": "1.2.2",
+    "downloadsLastMonth": 13281180
   },
   {
     "name": "ylru",
-    "downloadsLastMonth": 14663191,
+    "version": "2.0.0",
     "code": "export { LRU } from \"ylru\"",
-    "bundleSize": 2148
+    "downloadsLastMonth": 13570791,
+    "minifiedBundleSize": 1972
   }
 ]

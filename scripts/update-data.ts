@@ -86,22 +86,23 @@ const bundleCode = async ({ name, code }: Required<Pick<DataItem, "name" | "code
 
 type DataItem = {
   name: string
+  version: string
 
   downloadsLastMonth: number
 
   code?: string
   installSize?: number
-  bundleSize?: number
+  minifiedBundleSize?: number
 }
 
 export const updateData = async () => {
-  const pkgNames = Object.keys(pkgJson.dependencies)
+  const pkgs = Object.entries(pkgJson.dependencies)
   const existing = (await import("../data.json", { with: { type: "json" } }))
     .default as DataItem[]
 
   const downloadCountsByName: Record<string, number> = {}
   await Promise.all(
-    pkgNames.map(async (name) => {
+    pkgs.map(async ([name]) => {
       downloadCountsByName[name] = await limiter(() => fetchDownloadsLastMonth(name))
     }),
   )
@@ -109,7 +110,7 @@ export const updateData = async () => {
   const bundleLimiter = Limiter(3)
   const bundleSizeByName: Record<string, Awaited<ReturnType<typeof bundleCode>>> = {}
   await Promise.all(
-    pkgNames.map(async (name) => {
+    pkgs.map(async ([name]) => {
       const data = existing.find((item) => item.name === name)
       if (data == null || data.code == null) return
 
@@ -121,10 +122,13 @@ export const updateData = async () => {
 
   const updated = existing.map(
     (item): DataItem => ({
-      ...item,
+      name: item.name,
+      version: pkgs.find(([name]) => name === item.name)![1],
+      code: item.code,
+
       downloadsLastMonth: downloadCountsByName[item.name],
 
-      bundleSize: bundleSizeByName[item.name]?.size,
+      minifiedBundleSize: bundleSizeByName[item.name]?.size,
     }),
   )
 
