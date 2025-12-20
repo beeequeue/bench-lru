@@ -1,3 +1,5 @@
+import type { ctx, trial } from "mitata"
+
 const formatNumber = (num: number) =>
   num.toLocaleString("en-US", { maximumFractionDigits: 2 })
 
@@ -5,9 +7,7 @@ type Layout = { name: string | null; types: Array<"g" | "s" | "b"> }
 
 const formatToMicroSeconds = (nanoseconds: number) => (nanoseconds / 1000).toFixed(4)
 
-export const generateGraphs = async () => {
-  const { default: results } = await import("../bench.json", { with: { type: "json" } })
-  const { context } = results
+const generateMitataGraphs = (results: { context: ctx; benchmarks: trial[] }) => {
   const layout = (results as any).layout as Layout[]
 
   const groups = layout
@@ -60,9 +60,17 @@ xychart-beta
   bar [${withoutOutliers.map(formatToMicroSeconds).join(", ")}]
 \`\`\`
 ${outlierText}
----
 `.trim()
   })
+
+  return graphs
+}
+
+export const generateGraphs = async () => {
+  const { default: results } = await import("../bench.json", { with: { type: "json" } })
+  const { context } = results
+
+  const graphs = generateMitataGraphs(results as never)
 
   const markdown = `
 ${context.runtime} ${context.version} (${context.arch})
@@ -71,7 +79,7 @@ ${context.cpu.freq.toFixed(2)}GHz ${context.cpu.name.trim()}
 
 ---
 
-${graphs.join("\n\n")}
+${graphs.join("\n\n---\n\n")}
 `.trim()
 
   return markdown
