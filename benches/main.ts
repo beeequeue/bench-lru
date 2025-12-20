@@ -1,3 +1,4 @@
+import { writeFileSync } from "node:fs"
 import HashLRU from "hashlru"
 import FLRU from "flru"
 import { barplot, bench, group, run, summary } from "mitata"
@@ -161,4 +162,5 @@ barplot(() => {
   })
 })
 
-await run()
+const results = await run({ throw: true })
+writeFileSync("bench.json", JSON.stringify(results))

@@ -1,6 +1,6 @@
 import { build } from "rolldown"
 import { Buffer } from "node:buffer"
-import { mkdtempSync, symlinkSync, writeFileSync } from "node:fs"
+import { mkdtempSync, readFileSync, symlinkSync, writeFileSync } from "node:fs"
 import path from "node:path"
 import { setTimeout } from "node:timers/promises"
 import Limiter from "p-limit"
@@ -8,6 +8,7 @@ import { promisify } from "node:util"
 import zlib from "node:zlib"
 import pkgJson from "../package.json" with { type: "json" }
 import { tmpdir } from "node:os"
+import { generateGraphs } from "./generate-graphs.ts"
 
 const compress = {
   gzip: promisify(zlib.gzip),
@@ -137,6 +138,16 @@ export const updateData = async () => {
     path.resolve(import.meta.dirname, "..", "data.json"),
     JSON.stringify(updated, null, 2),
   )
+
+  let readmeContents = readFileSync("README.md", "utf8")
+  const benchmarkStart =
+    readmeContents.indexOf("<!-- BENCHMARKS START -->") +
+    "<!-- BENCHMARKS START -->".length
+  const benchmarkEnd = readmeContents.indexOf("<!-- BENCHMARKS END -->")
+
+  const graphs = await generateGraphs()
+  readmeContents = `${readmeContents.slice(0, benchmarkStart)}\n${graphs}\n${readmeContents.slice(benchmarkEnd)}`
+  writeFileSync("README.md", readmeContents)
 }
 
 await updateData()
