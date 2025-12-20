@@ -1,12 +1,5 @@
 [
   {
-    "name": "@wry/caches",
-    "version": "1.0.1",
-    "code": "export { StrongCache } from '@wry/caches'",
-    "downloadsLastMonth": 12741491,
-    "minifiedBundleSize": 6972
-  },
-  {
     "name": "flru",
     "version": "1.0.2",
     "code": "export { default } from 'flru'",
@@ -61,11 +54,6 @@
     "code": "export { lru } from 'tiny-lru'",
     "downloadsLastMonth": 5173069,
     "minifiedBundleSize": 4784
-  },
-  {
-    "name": "weak-lru-cache",
-    "version": "1.2.2",
-    "downloadsLastMonth": 13281180
   },
   {
     "name": "ylru",

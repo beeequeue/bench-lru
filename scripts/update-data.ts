@@ -138,16 +138,17 @@ export const updateData = async () => {
     path.resolve(import.meta.dirname, "..", "data.json"),
     JSON.stringify(updated, null, 2),
   )
-
-  let readmeContents = readFileSync("README.md", "utf8")
-  const benchmarkStart =
-    readmeContents.indexOf("<!-- BENCHMARKS START -->") +
-    "<!-- BENCHMARKS START -->".length
-  const benchmarkEnd = readmeContents.indexOf("<!-- BENCHMARKS END -->")
-
-  const graphs = await generateGraphs()
-  readmeContents = `${readmeContents.slice(0, benchmarkStart)}\n${graphs}\n${readmeContents.slice(benchmarkEnd)}`
-  writeFileSync("README.md", readmeContents)
 }
 
-await updateData()
+if (process.argv[2] === "--update") {
+  await updateData()
+}
+
+let readmeContents = readFileSync("README.md", "utf8")
+const benchmarkStart =
+  readmeContents.indexOf("<!-- BENCHMARKS START -->") + "<!-- BENCHMARKS START -->".length
+const benchmarkEnd = readmeContents.indexOf("<!-- BENCHMARKS END -->")
+
+const graphs = await generateGraphs()
+readmeContents = `${readmeContents.slice(0, benchmarkStart)}\n${graphs}\n${readmeContents.slice(benchmarkEnd)}`
+writeFileSync("README.md", readmeContents)

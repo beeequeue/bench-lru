@@ -5,7 +5,69 @@ const formatNumber = (num: number) =>
 
 type Layout = { name: string | null; types: Array<"g" | "s" | "b"> }
 
-const formatToMicroSeconds = (nanoseconds: number) => (nanoseconds / 1000).toFixed(4)
+const formatToMicroSeconds = (nanoseconds: number) =>
+  Number((nanoseconds / 1000).toFixed(4))
+
+type GraphOptions = {
+  name: string
+  yAxis: string
+  min?: number
+  max?: number
+  input: Map<string, number>
+}
+
+const generateBasicGraphs = ({ name, yAxis, min, max, input }: GraphOptions): string => {
+  const keys = Array.from(input.keys())
+  const values = Array.from(input.values())
+  const avgValue = values.reduce((accum, value) => accum + value, 0) / input.size
+
+  const normalAxisLabels: string[] = []
+  const normalValues: number[] = []
+  const outliers: Array<[string, number]> = []
+  for (let i = 0; i < values.length; i++) {
+    if (values[i] / avgValue > 2) {
+      outliers.push([keys[i], values[i]])
+      continue
+    }
+
+    normalAxisLabels.push(keys[i])
+    normalValues.push(values[i])
+  }
+
+  const minValue = min ?? Math.min(...normalValues)
+  const maxValue = max ?? Math.max(...normalValues)
+  let mermaidGraph = `
+\`\`\`mermaid
+xychart-beta
+  title "${name}"
+  x-axis ["${normalAxisLabels.join('", "')}"]
+  y-axis "${yAxis}" ${minValue} --> ${maxValue}
+  bar [${normalValues.join(", ")}]
+\`\`\`
+`.trim()
+
+  if (outliers.length !== 0) {
+    mermaidGraph += `\nHidden outliers:\n${outliers.map(([name, amount]) => `- \`${name}\`: \`${formatNumber(amount)}\``).join("\n")}\n`
+
+    mermaidGraph += `\n
+<details>
+
+<summary>Complete graph with outliers</summary>
+
+\`\`\`mermaid
+xychart-beta
+  title "${name}"
+  x-axis ["${keys.join('", "')}"]
+  y-axis "${yAxis}"
+  bar [${values.map(formatToMicroSeconds).join(", ")}]
+\`\`\`
+
+</details>
+`.trim()
+  }
+
+  return mermaidGraph
+}
 
 const generateMitataGraphs = (results: { context: ctx; benchmarks: trial[] }) => {
   const layout = (results as any).layout as Layout[]
@@ -27,40 +89,16 @@ const generateMitataGraphs = (results: { context: ctx; benchmarks: trial[] }) =>
       Number(((value / lowestValue) * 1000).toFixed(3)),
     )
 
-    const totalAvg =
-      relativePercentages.reduce((accum, value) => accum + Number(value), 0) /
-      relativePercentages.length
-
-    const shownXAxises: string[] = []
-    const withoutOutliers: number[] = []
-    const outliers: Array<[string, number]> = []
-    for (let i = 0; i < relativePercentages.length; i++) {
-      const axisName = xAxis[i]
-      const percent = relativePercentages[i]
-      if (percent / totalAvg > 2) {
-        outliers.push([axisName, percent])
-        continue
-      }
-
-      shownXAxises.push(axisName)
-      withoutOutliers.push(percent)
-    }
-
-    const outlierText =
-      outliers.length !== 0
-        ? `\nHidden outliers:\n${outliers.map(([name, amount]) => `- \`${name}: ${formatNumber(amount)}x\``).join("\n")}\n`
-        : ""
-
-    return `
-\`\`\`mermaid
-xychart-beta
-  title "${name}"
-  x-axis ["${shownXAxises.join('", "')}"]
-  y-axis "speed relative to fastest"
-  bar [${withoutOutliers.map(formatToMicroSeconds).join(", ")}]
-\`\`\`
-${outlierText}
-`.trim()
+    return generateBasicGraphs({
+      name: name!,
+      yAxis: "speed relative to fastest",
+      input: new Map(
+        relativePercentages.map((value, index) => [
+          xAxis[index],
+          formatToMicroSeconds(value),
+        ]),
+      ),
+    })
   })
 
   return graphs
@@ -69,8 +107,31 @@ ${outlierText}
 export const generateGraphs = async () => {
   const { default: results } = await import("../bench.json", { with: { type: "json" } })
   const { context } = results
+  const mermaidGraphs = generateMitataGraphs(results as never)
 
-  const graphs = generateMitataGraphs(results as never)
+  const { default: data } = await import("../data.json", { with: { type: "json" } })
+  const sizeByPackage = new Map<string, number>()
+  const downloadsByPackage = new Map<string, number>()
+  for (const { name, downloadsLastMonth, minifiedBundleSize } of data) {
+    sizeByPackage.set(name, minifiedBundleSize != null ? minifiedBundleSize : 0)
+    downloadsByPackage.set(name, downloadsLastMonth!)
+  }
+  mermaidGraphs.unshift(
+    generateBasicGraphs({
+      name: "minified bundle size",
+      yAxis: "bytes",
+      min: 0,
+      input: sizeByPackage,
+    }),
+  )
+  mermaidGraphs.unshift(
+    generateBasicGraphs({
+      name: "downloads in last month",
+      yAxis: "downloads",
+      min: 0,
+      input: downloadsByPackage,
+    }),
+  )
 
   const markdown = `
 ${context.runtime} ${context.version} (${context.arch})
@@ -79,7 +140,7 @@ ${context.cpu.freq.toFixed(2)}GHz ${context.cpu.name.trim()}
 
 ---
 
-${graphs.join("\n\n---\n\n")}
+${mermaidGraphs.join("\n\n---\n\n")}
 `.trim()
 
   return markdown
